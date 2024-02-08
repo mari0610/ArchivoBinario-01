@@ -1,0 +1,12 @@
+# ninja log v5
+6	606	7289591371263528	CMakeFiles/EjemploArchivoBinario.dir/main.cpp.obj	b94b7a2ad47b28b8
+5	645	7289586692661787	CMakeFiles/EjemploArchivoBinario.dir/BinaryFileManager.cpp.obj	d43656a5168138cc
+1	239	7289630177550661	build.ninja	e80d259fd2cefd29
+16	497	7289587393870389	CMakeFiles/EjemploArchivoBinario.dir/Subject.cpp.obj	baa63d396eef4c5a
+607	778	7289591372933651	EjemploArchivoBinario.exe	d9e3637aae001a7d
+17	1056	7289577571071764	CMakeFiles/EjemploArchivoBinario.dir/Student.cpp.obj	8ead6aeef7ff66f2
+5	956	7289634285236237	CMakeFiles/EjemploArchivoBinario.dir/main.cpp.obj	b94b7a2ad47b28b8
+20	1076	7289634286344465	CMakeFiles/EjemploArchivoBinario.dir/BinaryFileManager.cpp.obj	d43656a5168138cc
+1076	1303	7289634288538936	EjemploArchivoBinario.exe	d9e3637aae001a7d
+6	816	7289634625554806	CMakeFiles/EjemploArchivoBinario.dir/main.cpp.obj	b94b7a2ad47b28b8
+817	1026	7289634627637302	EjemploArchivoBinario.exe	d9e3637aae001a7d
