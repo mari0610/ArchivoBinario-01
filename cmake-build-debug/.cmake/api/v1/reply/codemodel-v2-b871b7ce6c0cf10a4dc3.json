@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/CLionProjects/EjemploArchivoBinario/cmake-build-debug",
-		"source" : "C:/CLionProjects/EjemploArchivoBinario"
+		"build" : "C:/Progra1/ArchivoBinario-01/cmake-build-debug",
+		"source" : "C:/Progra1/ArchivoBinario-01"
 	},
 	"version" : 
 	{

@@ -9,18 +9,47 @@ std::ostream &BinaryFileManager::write(std::ostream &out, const Student &student
     //Primero se escribe la longitud del nombre (len) como una secuencia de bytes.
     //Luego se escribe el contenido del nombre (student.getNombre()) como una secuencia de bytes.
     size_t len = student.getNombre().size();
-    out.write((char*)&len, sizeof(len));
+    out.write(reinterpret_cast<char*>(&len), sizeof(len));
     out.write(student.getNombre().c_str(), len);
 
     len = student.getCarrera().size();
-    out.write((char*)&len, sizeof(len));
+    out.write(reinterpret_cast<char*>(&len), sizeof(len));
     out.write(student.getCarrera().c_str(), len);
     //Se escribe directamente el valor de la edad (&edad) como una secuencia de bytes.
-    out.write((char*)(&edad), sizeof(student.getEdad()));
+    out.write(reinterpret_cast<char*>(&edad), sizeof(edad));
 
     return out;
 }
 
+
+std::istream &BinaryFileManager::read(std::istream &in, Student &student) {
+    int edad = 0;
+    //tamaño variable segun el sistema, si es un sistema de 32bits sera ese su tamaño, si es de 64
+    size_t len = 0;
+    std::string nombre;
+    //.read pertenece a la clase istream
+    in.read(reinterpret_cast<char*>(&len), sizeof(len)); //lee los bytes del tamaño de un size_t
+    nombre.resize(len);//ajusta el tamaño de nombre para que coincida con la longitud de len
+    in.read(&nombre[0], len);
+    student.setNombre(nombre);
+
+    len = 0;
+    std::string carrera;
+    //bufer tipo char, tamaño
+    in.read(reinterpret_cast<char*>(&len), sizeof(len));
+    carrera.resize(len);
+    in.read(&carrera[0], len); //read espera un puntero al primer caracter de la cadena carrera
+    student.setCarrera(carrera);
+
+    //lee y almacena los bytes del flujo de entrada en la variable edad.
+    in.read(reinterpret_cast<char*>(&edad), sizeof(int));
+    //ahora edad contiene el valor leido del archivo binario
+    student.setEdad(edad); //se pasa el valor de edad leido a student
+
+    return in;
+}
+
+/*
 std::istream &BinaryFileManager::read(std::istream &in, Student &student) {
     int edad = 0;
     //tamaño variable segun el sistema, si es un sistema de 32bits sera ese su tamaño, si es de 64
@@ -48,6 +77,7 @@ std::istream &BinaryFileManager::read(std::istream &in, Student &student) {
 
     return in;
 }
+ */
 
 void BinaryFileManager::guardarStudentList(const std::vector<Student> &studentList, const std::string &fileName) {
 
@@ -95,12 +125,11 @@ std::ostream &BinaryFileManager::writeSubject(std::ostream &out, const Subject &
     //Primero se escribe la longitud del nombre (len) como una secuencia de bytes.
     //Luego se escribe el contenido del nombre (student.getNombre()) como una secuencia de bytes.
     size_t len = subject.getNombre().size();
-    out.write((char*)&len, sizeof(len));
+    out.write(reinterpret_cast<char*>(&len), sizeof(len));
     out.write(subject.getNombre().c_str(), len);
 
-
-    out.write((char*)(&code), sizeof(subject.getCode()));
-    out.write((char*)(&creditos), sizeof(subject.getCreditos()));
+    out.write(reinterpret_cast<char*>(&code), sizeof(code));
+    out.write(reinterpret_cast<char*>(&creditos), sizeof(creditos));
 
     return out;
 }
@@ -112,16 +141,16 @@ std::istream &BinaryFileManager::readSubject(std::istream &in, Subject &subject)
     size_t len = 0;
     std::string nombre;
 
-    in.read((char*)&len, sizeof(len));
+    in.read(reinterpret_cast<char*>(&len), sizeof(len));
     nombre.resize(len);
     in.read(&nombre[0], len);
     subject.setNombre(nombre);
 
 
-    in.read((char*)&code, sizeof(int));
+    in.read(reinterpret_cast<char*>(&code), sizeof(int));
     subject.setCode(code);
 
-    in.read((char*)&creditos, sizeof(int));
+    in.read(reinterpret_cast<char*>(&creditos), sizeof(int));
     subject.setCreditos(creditos);
 
 

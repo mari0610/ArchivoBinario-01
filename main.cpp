@@ -11,8 +11,8 @@ int main() {
             Student ("Amanda",  "Medicina", 60)
     };
 
-    BinaryFileManager::guardarStudentList(listaEstudiantes, "C:/Pruebas/vectoresJuntos.dat");
-    auto listStudentsRead=BinaryFileManager::leerStudentList("C:/Pruebas/vectoresJuntos.dat");
+    BinaryFileManager::guardarStudentList(listaEstudiantes, "C:/Users/Mariana/Desktop/vectoresJuntos.dat");
+    auto listStudentsRead=BinaryFileManager::leerStudentList("C:/Users/Mariana/Desktop/vectoresJuntos.dat");
     for (auto &student : listStudentsRead){
         std::cout<<student<<std::endl;
     }
@@ -24,8 +24,8 @@ int main() {
             Subject ("Español",  103, 5)
     };
 
-    BinaryFileManager::guardarSubjectList(listaMaterias, "C:/Pruebas/vectoresJuntos.dat");
-    auto listSubjectRead=BinaryFileManager::leerSubjectList("C:/Pruebas/vectoresJuntos.dat");
+    BinaryFileManager::guardarSubjectList(listaMaterias, "C:/Users/Mariana/Desktop/vectoresJuntos.dat");
+    auto listSubjectRead=BinaryFileManager::leerSubjectList("C:/Users/Mariana/Desktop/vectoresJuntos.dat");
     for (auto &subject : listSubjectRead){
         std::cout<<subject<<std::endl;
     }
